@@ -1,0 +1,107 @@
+<header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar-brand align-item-center d-flex">
+      <i style="font-size: 40px;" class="fas fa fa-car">&nbsp;
+
+      </i>
+      <strong style="font-size: 30px;">Autix</strong>
+
+
+
+    </div>
+    <div class="nav-item ">
+      <a class="nav-link" href="home">Home</a>
+      <a class="nav-link" href="#">About us</a>
+      <a class="nav-link" href="login">Sign in</a>
+    </div>
+
+  </div>
+</header>
+
+<section class="vh-100 bg-image">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+              <p class="text-white-50 mb-5">Please enter your personal data!</p>
+
+              <form (ngSubmit)="register()">
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="name">Your Name</label>
+                    <input type="text" id="name" class="form-control form-control-lg" name="name"
+                           [(ngModel)]="user.name"/>
+                    <div class="col-10" *ngIf="userError?.name">
+                      <div class="text text-danger>">{{userError.name}}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="surname">Your Surname</label>
+                    <input type="text" id="surname" class="form-control form-control-lg" name="surname"
+                           [(ngModel)]="user.surname"/>
+                    <div class="col-10" *ngIf="userError?.surname">
+                      <span class="text text-danger>">{{userError.surname}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="email">Your Email</label>
+                    <input type="email" id="email" class="form-control form-control-lg" name="email"
+                           [(ngModel)]="user.email"/>
+                    <div class="col-10" *ngIf="userError?.email">
+                      <span class="text text-danger>">{{userError.email}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-control form-control-lg" name="password"
+                           [(ngModel)]="user.password"/>
+                    <div class="col-10" *ngIf="userError?.password">
+                      <span class="text text-danger>">{{userError.password}}</span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="password1">Repeat your password</label>
+                  <input type="password" id="password1" class="form-control form-control-lg" name="password1">
+                  <div class="col-10" *ngIf="userError?.password">
+                    <span class="text text-danger>">{{userError.password}}</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="button"
+                          class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                          (click)="register()">
+                    Register
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+
+            <div>
+              <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="login" class="text-white-50 text-body"><u>Login here</u></a></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

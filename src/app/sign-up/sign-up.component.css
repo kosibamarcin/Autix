@@ -1,0 +1,26 @@
+.bg-image {
+  background: url('https://www.topgear.com/sites/default/files/2022/07/6_0.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.text {
+  color:red;
+}
+
+.nav-item {
+  display: flex;
+}
+
+.nav-link {
+  color:white;
+}
+a {
+  font-size: 20px;
+}
+
+/*.form-group {*/
+/*  display:inline-block;*/
+/*}*/
