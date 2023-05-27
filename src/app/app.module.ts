@@ -9,12 +9,14 @@ import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { MapComponent } from './map/map.component';
 import {MapsModule} from "@syncfusion/ej2-angular-maps";
+import { RentComponent } from './rent/rent.component';
 
 const appRoute: Routes = [
   {path : '',redirectTo : 'signup',pathMatch : 'full'},
   {path: 'signup', component: SignUpComponent },
   {path: 'login', component: SignInComponent },
-  {path: 'map', component: MapComponent}
+  {path: 'map', component: MapComponent},
+  {path: 'rent', component: RentComponent}
 ]
 
 @NgModule({
@@ -22,7 +24,8 @@ const appRoute: Routes = [
     AppComponent,
     SignInComponent,
     SignUpComponent,
-    MapComponent
+    MapComponent,
+    RentComponent
   ],
   imports: [
     BrowserModule,

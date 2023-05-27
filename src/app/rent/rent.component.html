@@ -1,0 +1,32 @@
+<header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar-brand align-item-center d-flex">
+      <i style="font-size: 40px;" class="fas fa fa-car">&nbsp;
+
+      </i>
+      <strong style="font-size: 30px;">Autix</strong>
+
+
+
+    </div>
+    <div class="nav-item ">
+      <a class="nav-link" href="home">Home</a>
+      <a class="nav-link" href="#">About us</a>
+      <a class="nav-link" href="signup">Sign up</a>
+      <a class="nav-link" href="map">Map</a>
+    </div>
+  </div>
+</header>
+
+<section class="vh-100 bg-image">
+  <div class="rent">
+    <h1 style="text-align: center; margin-bottom: 20px;">Przejazd</h1>
+    <h3 style="text-align: center">Wypożyczony samochód: </h3>
+    <h3 style="text-align: center">Czas przejazdu: </h3>
+    <h2 style="text-align: center">{{ minutes }}:{{ seconds | number: '2.0' }}</h2>
+    <h3 style="text-align: center">Naliczony koszt: {{seconds* 1.6}} zł</h3>
+    <button (click)="startTimer()" [disabled]="!timer1acc">Rozpocznij przejazd</button>
+    <button (click)="stopTimer()" [disabled]="!timer2acc">Zakończ przejazd</button>
+    <button (click)="zakoncz()" [disabled]="!isOver">Zwróć pojazd</button>
+  </div>
+</section>
