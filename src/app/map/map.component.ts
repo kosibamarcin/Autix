@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Map, Marker, icon, Icon, tileLayer, polygon} from 'leaflet';
+import { CarsService } from "../../services/cars.service";
+import { ZonesService } from "../../services/zones.service";
+import { RentService } from "../../services/rent.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 var myIconReplc = Icon.extend({
   options: {
@@ -10,6 +14,12 @@ var myIconReplc = Icon.extend({
 });
 
 
+class Car {
+  id!: number
+  name!: string
+  coordinates: any
+}
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -17,10 +27,22 @@ var myIconReplc = Icon.extend({
 })
 
 export class MapComponent {
-  map: Map | undefined;
+  map!: Map;
+  cars!: Car[];
 
   ngOnInit() {
     this.initializeMap();
+  }
+
+  public getCars() {
+    this.carsService.get_cars().subscribe(
+      (response: Car[]) => {
+        this.cars = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   initializeMap() {
@@ -36,11 +58,13 @@ export class MapComponent {
       fillOpacity: 0.5,
     }).addTo(this.map);
 
-    const marker = new Marker([50.049683, 19.944544]).addTo(this.map);
-    marker.bindPopup('BMWx3 zasięg: 150km <br> <a class="nav-link" href="rent">Wynajmij</a>');
-    marker.setIcon(new myIconReplc)
+    for (let i = 0; i < this.cars.length ; i++) {
+      const marker = new Marker(this.cars[i].coordinates).addTo(this.map);
+      marker.bindPopup(this.cars[i].name + ' <br> <a class="nav-link" href="rent">Wynajmij</a>');
+      marker.setIcon(new myIconReplc)
+    }
   }
-    constructor() {
+    constructor(private zonesService : ZonesService, private carsService: CarsService, private rentService: RentService) {
   };
 }
 
