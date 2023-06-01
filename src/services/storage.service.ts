@@ -14,7 +14,7 @@ export class StorageService {
 
   public saveJwt(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.sessionStorage.setItem(USER_KEY, user.token);
   }
 
   public getDecodedJwt(): any {
@@ -40,7 +40,7 @@ export class StorageService {
   public getEncodedToken(): any {
     const token = window.sessionStorage.getItem(USER_KEY);
     if (token) {
-      return JSON.parse(token);
+      return token;
     }
 
     return {};

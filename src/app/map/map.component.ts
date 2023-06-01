@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { Map, Marker, icon, Icon, tileLayer, polygon} from 'leaflet';
+import { Map, Marker, Icon, tileLayer, polygon} from 'leaflet';
 import { CarsService } from "../../services/cars.service";
 import { ZonesService } from "../../services/zones.service";
-import { RentService } from "../../services/rent.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
 var myIconReplc = Icon.extend({
@@ -14,15 +13,21 @@ var myIconReplc = Icon.extend({
 });
 
 
-class Car {
+export class Car {
   id!: number
-  name!: string
-  coordinates: any
+  registration!: string
+  brand!: string
+  model!: string
+  batteryLevel!: string
+  active!: boolean
+  rental!: boolean
+  x: any
+  y: any
 }
 
 class Zone {
   id!: number;
-  polygon: any;
+  geometry: any;
   color: any;
 }
 
@@ -37,6 +42,10 @@ export class MapComponent implements OnInit{
   cars!: Car[];
   zones!: Zone[];
 
+  constructor(private zonesService : ZonesService,
+              private carsService: CarsService) {};
+
+
   ngOnInit() {
     this.getCars();
   }
@@ -46,7 +55,6 @@ export class MapComponent implements OnInit{
       (response: Car[]) => {
         this.cars = response;
         this.getZones();
-        this.initializeMap()
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -56,8 +64,9 @@ export class MapComponent implements OnInit{
 
   public getZones() {
     this.zonesService.get_zones().subscribe(
-      (response: Zone[]) => {
-        this.zones = response;
+      (response: any) => {
+        this.zones = response.zones;
+        this.initializeMap();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -73,21 +82,23 @@ export class MapComponent implements OnInit{
     }).addTo(this.map);
 
     for (let i = 0; i < this.zones.length; i++){
-      polygon(this.zones[i].polygon, {
-        color: this.zones[i].color,
-        fillColor: this.zones[i].color,
-        fillOpacity: 0.5,
-      }).addTo(this.map);
+        polygon(this.zones[i].geometry.coordinates[0], {
+          color: 'blue',
+          fillColor: 'blue',
+          fillOpacity: 0.5,
+        }).addTo(this.map);
     }
 
     for (let i = 0; i < this.cars.length ; i++) {
-      const marker = new Marker(this.cars[i].coordinates).addTo(this.map);
-      marker.bindPopup(this.cars[i].name + ' <br> <a class="nav-link" href="rent">Wynajmij</a>');
+      const marker = new Marker([this.cars[i].x, this.cars[i].y]).addTo(this.map);
+      const brandAndModel = this.cars[i].brand + ' ' + this.cars[i].model;
+      const registration = this.cars[i].registration
+      const htmlRentComponent = `<a class="nav-link" href="rent/${this.cars[i].id}">Wynajmij</a>`;
+      marker.bindPopup(brandAndModel + '</br>' + registration + '</br>' + htmlRentComponent);
       marker.setIcon(new myIconReplc)
     }
   }
-    constructor(private zonesService : ZonesService, private carsService: CarsService, private rentService: RentService) {
-  };
+
 }
 
 

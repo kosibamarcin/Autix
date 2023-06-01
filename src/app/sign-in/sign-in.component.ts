@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../services/login.service";
-import {Data, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
 
 @Component({
@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    let payload = {email: this.email, password: this.password};
+    let payload = {username: this.email, password: this.password};
     this.loginService.login(payload).subscribe(data => {
         this.storageService.saveJwt(data);
         this.router.navigate(['/map']);
@@ -35,7 +35,8 @@ export class SignInComponent implements OnInit {
       },
       error => {
         this.invalidLogin = true;
-        alert("bad credentials")
+        console.log(error);
+        alert("bad credentials");
       })
   }
 

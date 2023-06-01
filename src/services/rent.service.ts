@@ -1,27 +1,38 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
-import {Data, Router} from "@angular/router";
-import {User} from "../user/user";
 import {StorageService} from "./storage.service";
+import {Car} from "../app/map/map.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentService {
-  private header = new HttpHeaders();
-  private refreshToken: any;
-  rentUrl = 'http://localhost:8080/login';
+  private baseUrl = `http://localhost:8080/vehicles/`;
+  private carToRent?: Car;
   constructor(private httpClient: HttpClient, private storageService: StorageService) { }
-  rent_car() {
+  rentCar(carId: number) {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.storageService.getEncodedToken() });
-    //
-    return this.httpClient.post(this.rentUrl, headers);
+    const options = { headers: headers };
+    const rentUrl = this.baseUrl + carId + '/rental';
+    console.log(rentUrl);
+    console.log(headers);
+    return this.httpClient.post(rentUrl, {}, options);
   }
 
-  return_car() {
+  returnCar(carId: number) {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.storageService.getEncodedToken() });
-    // @ts-ignore
-    return this.httpClient.post(this.rentUrl, headers);
+    const options = { headers: headers };
+    const returnUrl = this.baseUrl + carId + '/return';
+    console.log(returnUrl);
+    return this.httpClient.post(returnUrl, {},  options);
   }
+
+  setCarToRent(car: Car) {
+    this.carToRent = car;
+  }
+
+  getCarToRent() {
+    return this.carToRent;
+  }
+
 }
