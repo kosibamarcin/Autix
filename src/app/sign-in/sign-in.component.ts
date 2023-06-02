@@ -30,8 +30,6 @@ export class SignInComponent implements OnInit {
         this.router.navigate(['/map']);
         this.invalidLogin = false;
         this.isLoggedIn = true;
-        console.log(data)
-        // window.location.reload();
       },
       error => {
         this.invalidLogin = true;
