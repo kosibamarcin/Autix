@@ -1,9 +1,8 @@
 export class User {
-  id!:string;
-  name!:string;
-  surname!:string;
+  username!:string;
+  pesel!: number;
+  firstName!:string;
+  lastName!:string;
   email!:string;
   password!:string;
-  enabled!:boolean;
-  roles:any;
 }

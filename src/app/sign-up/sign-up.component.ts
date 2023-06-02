@@ -15,7 +15,6 @@ export class SignUpComponent implements OnInit {
   // @ts-ignore
   userError: User;
   isCreated:boolean = false;
-  userExists:boolean=false;
   passwordsDifferent:boolean = true;
 
 
@@ -23,7 +22,6 @@ export class SignUpComponent implements OnInit {
 
   register(){
     this.comparePasswords();
-    // if (this.passwordsDifferent === true) {
     this.registerService.registerUser(this.user).subscribe(data=>{
       this.user = new User();
       this.isCreated = true;
@@ -33,7 +31,6 @@ export class SignUpComponent implements OnInit {
       this.userError=error.error;
       this.isCreated = false;
     });
-    // }
   }
 
   comparePasswords() {
