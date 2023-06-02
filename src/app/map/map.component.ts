@@ -44,7 +44,8 @@ export class MapComponent implements OnInit{
   zones!: Zone[];
 
   constructor(private zonesService : ZonesService,
-              private carsService: CarsService, public storageService: StorageService) {};
+              private carsService: CarsService,
+              public storageService: StorageService) {};
 
 
   ngOnInit() {

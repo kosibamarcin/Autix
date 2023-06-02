@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../user/user";
 import {RegisterService} from "../../services/register.service";
 import {Router} from "@angular/router";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,9 @@ export class SignUpComponent implements OnInit {
   passwordsDifferent:boolean = true;
 
 
-  constructor(private registerService: RegisterService, private router: Router) { }
+  constructor(private registerService: RegisterService,
+              private router: Router,
+              public storageService: StorageService) { }
 
   register(){
     this.comparePasswords();

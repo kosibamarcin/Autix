@@ -14,7 +14,9 @@ export class SignInComponent implements OnInit {
   invalidLogin = false;
   isLoggedIn = false;
 
-  constructor(private loginService: LoginService, private router: Router, private storageService: StorageService) {
+  constructor(private loginService: LoginService,
+              private router: Router,
+              public storageService: StorageService) {
   }
 
   ngOnInit(): void {
