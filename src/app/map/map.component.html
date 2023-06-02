@@ -11,8 +11,7 @@
     </div>
     <div class="nav-item ">
       <a class="nav-link" href="home">Home</a>
-      <a class="nav-link" href="#">About us</a>
-      <a class="nav-link" href="signup">Sign up</a>
+      <a *ngIf="!this.storageService.isLoggedIn()" class="nav-link" href="signup">Sign up</a>
       <a class="nav-link" href="map">Map</a>
     </div>
   </div>
@@ -20,17 +19,6 @@
 
 <div id="map"></div>
 
-
-<!--<div class="control-section">-->
-<!--  <div align='center'>-->
-<!--    <ejs-maps id='container' style="display:block;" height='1000px' width='auto' [layers]='layers' (load)="load($event)" [zoomSettings]="zoomSettings" [titleSettings]="titleSettings" [centerPosition] = 'centerPosition'>-->
-<!--    </ejs-maps>-->
-<!--  </div>-->
-<!--  <div style="float: right">-->
-<!--    <a href="https://www.openstreetmap.org/copyright" style="margin-right: 10px;" target="_blank">© OpenStreetMap contributors</a>-->
-<!--  </div>-->
-<!--  <br/>-->
-<!--</div>-->
 <style>
   #map {
     height: 1000px;

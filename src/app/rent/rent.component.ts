@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {RentService} from "../../services/rent.service";
 import {Car} from "../map/map.component";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-rent',
@@ -20,7 +21,7 @@ export class RentComponent implements OnInit {
   cost: string = '-';
 
 
-  constructor(private router: Router, private rentService: RentService) {}
+  constructor(private router: Router, private rentService: RentService, public storageService: StorageService) {}
 
   ngOnInit(): void {
     const splittedUrl = this.router.url.split('/');

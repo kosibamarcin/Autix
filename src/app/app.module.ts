@@ -10,13 +10,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { MapComponent } from './map/map.component';
 import {MapsModule} from "@syncfusion/ej2-angular-maps";
 import { RentComponent } from './rent/rent.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoute: Routes = [
   {path : '',redirectTo : 'signup',pathMatch : 'full'},
   {path: 'signup', component: SignUpComponent },
   {path: 'login', component: SignInComponent },
-  {path: 'map', component: MapComponent},
-  {path: '**', component: RentComponent}
+  {path: 'map', component: MapComponent },
+  {path: 'home', component: HomeComponent },
+  {path: '**', component: RentComponent }
 ]
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoute: Routes = [
     SignInComponent,
     SignUpComponent,
     MapComponent,
-    RentComponent
+    RentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
