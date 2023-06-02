@@ -14,8 +14,6 @@ export class RentService {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.storageService.getEncodedToken() });
     const options = { headers: headers };
     const rentUrl = this.baseUrl + carId + '/rental';
-    console.log(rentUrl);
-    console.log(headers);
     return this.httpClient.post(rentUrl, {}, options);
   }
 
@@ -23,7 +21,6 @@ export class RentService {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.storageService.getEncodedToken() });
     const options = { headers: headers };
     const returnUrl = this.baseUrl + carId + '/return';
-    console.log(returnUrl);
     return this.httpClient.post(returnUrl, {},  options);
   }
 

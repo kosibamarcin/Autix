@@ -52,19 +52,18 @@ export class RentComponent implements OnInit {
   }
 
   endRental() {
-    clearInterval(this.timer);
-    this.timer2acc = false;
-    this.isOver = true;
-
     this.rentService.returnCar(this.rentedCarId).subscribe(data => {
         const response = (data as RentalResponse);
-        this.minutes = response.durationSeconds / 60;
+        this.minutes = Math.floor(response.durationSeconds / 60);
         this.seconds = response.durationSeconds % 60;
         this.cost = response.cost.toString();
+        clearInterval(this.timer);
+        this.timer2acc = false;
+        this.isOver = true;
       },
       error => {
-        alert("Unable to rent the car");
-        this.router.navigate(['map']);
+        console.log(error);
+        alert("Unable to return the car");
       })
   }
 

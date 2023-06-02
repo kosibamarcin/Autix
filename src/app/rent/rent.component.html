@@ -22,7 +22,7 @@
     <h1 style="text-align: center; margin-bottom: 20px;">Przejazd</h1>
     <h3 style="text-align: center">Wypożyczony samochód: {{rentedCar}}</h3>
     <h3 style="text-align: center">Czas przejazdu: </h3>
-    <h2 style="text-align: center">{{ minutes }}:{{ seconds | number: '2.0' }}</h2>
+    <h2 style="text-align: center">{{ minutes | number: '1.0-0' }}:{{ seconds | number: '2.0' }}</h2>
     <h3 style="text-align: center">Naliczony koszt: {{cost}}</h3>
     <button (click)="endRental()" [disabled]="!timer2acc">Zakończ przejazd</button>
     <button (click)="returnToMap()" [disabled]="!isOver">Powrót do mapy</button>
