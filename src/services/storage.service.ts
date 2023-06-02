@@ -54,4 +54,8 @@ export class StorageService {
 
     return false;
   }
+
+  public removeJwt(): void {
+    window.sessionStorage.removeItem(USER_KEY);
+  }
 }

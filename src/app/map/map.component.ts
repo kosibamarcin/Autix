@@ -4,6 +4,7 @@ import { CarsService } from "../../services/cars.service";
 import { ZonesService } from "../../services/zones.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {StorageService} from "../../services/storage.service";
+import {Router} from "@angular/router";
 
 var myIconReplc = Icon.extend({
   options: {
@@ -45,7 +46,8 @@ export class MapComponent implements OnInit{
 
   constructor(private zonesService : ZonesService,
               private carsService: CarsService,
-              public storageService: StorageService) {};
+              public storageService: StorageService,
+              private router: Router) {};
 
 
   ngOnInit() {
@@ -99,6 +101,11 @@ export class MapComponent implements OnInit{
       marker.bindPopup(brandAndModel + '</br>' + registration + '</br>' + htmlRentComponent);
       marker.setIcon(new myIconReplc)
     }
+  }
+
+  logout() {
+    this.storageService.removeJwt();
+    this.router.navigate(['/signup']);
   }
 
 }
